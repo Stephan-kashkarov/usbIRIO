@@ -1,3 +1,5 @@
+#include <DigiCDC.h>
+
 void setup() {
 
 }
