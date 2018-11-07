@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 int getOperation()
 {
 	int action;
@@ -34,7 +33,6 @@ int getOperation()
 	return action;
 }
 
-
 int main()
 {
 	char a;
@@ -49,38 +47,34 @@ int main()
 
 	switch (operation)
 	{
-	case 0: // IR mouse OUTPUT
-		cout << "feature not yet avalible" << endl;
-		
-		break;
+		case 0: // IR mouse OUTPUT
+			cout << "feature not yet avalible" << endl;
 
+			break;
 
-	case 1: // IR mouse INPUT
-		cout << "feature not yet avalible" << endl;
-		// cout << "IR Mouse Enabled!" << endl;
-		break;
+		case 1: // IR mouse INPUT
+			cout << "feature not yet avalible" << endl;
+			// cout << "IR Mouse Enabled!" << endl;
+			break;
 
+		case 2: // IR keyboard OUTPUT
 
-	case 2: // IR keyboard OUTPUT
+			char state = 1;
+			while (true)
+			{
+				bool succsess = reader.readKey(state);
+				cout << state << " " << endl;
+				arduino << state;
+			}
+			break;
 
-		char state = 1;
-		while (true)
-		{
-			bool succsess = reader.readKey(state);
-			cout << state << " " << endl;
-			arduino << state;
-		}
-		break;
+		case 3: // IR keyboard INPUT
+			cout << "IR keyboard Enabled!" << endl;
+			break;
 
-
-	case 3: // IR keyboard INPUT
-		cout << "IR keyboard Enabled!" << endl;
-		break;
-
-
-	default:
-		cout << "This is impossible" << endl;
-		break;
+		default:
+			cout << "This is impossible" << endl;
+			break;
 	}
 
 	return 0;
