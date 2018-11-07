@@ -37,6 +37,9 @@ int getOperation()
 
 int main()
 {
+	char a;
+	cout << "When the Green LED Starts flashing press enter to start!" << endl;
+	cin >> &a;
 	ofstream arduino;
 	arduino.open("/dev/ttyUSB0");
 	KeyReader reader;
