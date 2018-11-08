@@ -1,6 +1,16 @@
+// Imports
 #include "DigiKeyboard.h"
 
+
 bool writeIRByte(char character)
+/* writeIRByte
+ *
+ * Writes an byte over IR from a char
+ * 
+ * @param character (char) | The character to be sent
+ * 
+ * @return bool | returns True if Succsess else False
+ */
 {
 	digitalWrite(5, HIGH);
 	DigiKeyboard.delay(10);
@@ -43,7 +53,7 @@ bool readIRByte(char &character)
 	while (true)
 	{
 		byte start = pulseIn(7, HIGH);
-		if (start == 10)
+		if (start > 1)
 		{
 
 			for (size_t i = 0; i < 8; ++i)

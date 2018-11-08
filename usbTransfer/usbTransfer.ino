@@ -43,7 +43,7 @@ bool readIRByte(char &character)
 	while (true)
 	{
 		byte start = pulseIn(7, HIGH);
-		if (start == 10)
+		if (start > 1)
 		{
 
 			for (size_t i = 0; i < 8; ++i)

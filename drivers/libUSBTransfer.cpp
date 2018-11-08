@@ -35,9 +35,9 @@ int getOperation()
 
 int main()
 {
-	char a;
-	cout << "When the Green LED Starts flashing press enter to start!" << endl;
-	cin >> &a;
+	// char a;
+	// cout << "When the Green LED Starts flashing press enter to start!" << endl;
+	// cin >> &a;
 	ofstream arduino;
 	arduino.open("/dev/ttyUSB0");
 	KeyReader reader;
@@ -47,18 +47,18 @@ int main()
 
 	switch (operation)
 	{
-		case 0: // IR mouse OUTPUT
+		case 0: {// IR mouse OUTPUT
 			cout << "feature not yet avalible" << endl;
 
 			break;
-
-		case 1: // IR mouse INPUT
+		}
+		case 1:{ // IR mouse INPUT
 			cout << "feature not yet avalible" << endl;
 			// cout << "IR Mouse Enabled!" << endl;
 			break;
-
+		}
 		case 2: // IR keyboard OUTPUT
-
+		{
 			char state = 1;
 			while (true)
 			{
@@ -67,14 +67,17 @@ int main()
 				arduino << state;
 			}
 			break;
-
+		}
 		case 3: // IR keyboard INPUT
+		{
 			cout << "IR keyboard Enabled!" << endl;
 			break;
-
+		}
 		default:
+		{
 			cout << "This is impossible" << endl;
 			break;
+		}
 	}
 
 	return 0;
