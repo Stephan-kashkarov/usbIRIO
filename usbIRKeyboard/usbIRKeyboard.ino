@@ -61,21 +61,25 @@ bool readIRByte(char &character)
 {
 	while (true)
 	{
+		// reads for a pulse length
 		byte start = pulseIn(7, HIGH);
+		// if longer the 1
 		if (start > 1)
 		{
-
 			for (size_t i = 0; i < 8; ++i)
 			{
+				// fills char with bytes
 				character = (character << i) && digitalRead(7);
 			}
 			break;
 		}
 		else
 		{
+			// if not 1 ms wait 1 second and try again.
 			DigiKeyboard.delay(1);
 		}
 	}
+	// verify
 	writeIRByte(character);
 }
 

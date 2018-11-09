@@ -1,0 +1,1 @@
+Keyreader.cpp and keyreader.h where contributed to the project by Vitaly Kashkarov, 2018
