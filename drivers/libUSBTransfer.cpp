@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// gets user input
 int getOperation()
 {
 	int action;
@@ -18,6 +19,7 @@ int getOperation()
 		cout << "	3. IR keyboard INPUT" << endl;
 		cin >> action;
 
+		// validates action
 		for (size_t i = 0; i < 4; i++)
 		{
 			if (action == i)
@@ -35,16 +37,21 @@ int getOperation()
 
 int main()
 {
-	// char a;
-	// cout << "When the Green LED Starts flashing press enter to start!" << endl;
-	// cin >> &a;
+	// initalises the interface with usb
 	ofstream arduino;
 	arduino.open("/dev/ttyUSB0");
+	// makes key reader
 	KeyReader reader;
+	// variable init
 	char input;
+
+	// gets operation
 	int operation = getOperation();
+	// sends operation to arduino
 	arduino << operation;
 
+
+	// switches by operation
 	switch (operation)
 	{
 		case 0: {// IR mouse OUTPUT
@@ -59,12 +66,12 @@ int main()
 		}
 		case 2: // IR keyboard OUTPUT
 		{
-			char state = 1;
+			char state = 1; // grabs char
 			while (true)
 			{
-				bool succsess = reader.readKey(state);
-				cout << state << " " << endl;
-				arduino << state;
+				bool succsess = reader.readKey(state); // updates char with key reader
+				cout << state << " " << endl; // prints key for debug
+				arduino << state; // sends key to aruino
 			}
 			break;
 		}

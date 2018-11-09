@@ -2,6 +2,7 @@
 
 bool writeIRByte(char character)
 {
+	// see other file 
 	digitalWrite(5, HIGH);
 	SerialUSB.delay(10);
 	digitalWrite(5, LOW);
@@ -40,6 +41,7 @@ bool writeIRByte(char character)
 
 bool readIRByte(char &character)
 {
+	// see other file
 	while (true)
 	{
 		byte start = pulseIn(7, HIGH);
@@ -62,6 +64,7 @@ bool readIRByte(char &character)
 
 void setup()
 {
+	// pinmode inits
 	SerialUSB.begin();
 	pinMode(1, OUTPUT);
 	pinMode(5, OUTPUT);
@@ -70,38 +73,33 @@ void setup()
 
 void loop()
 {
+	// checks for serial input
 	if (SerialUSB.available())
 	{
-		char input = SerialUSB.read();
+		char input = SerialUSB.read(); // gets state of program
 		switch (input)
 		{
 			case 0:
 				break;
 			case 1:
 				break;
-			case 2:
-				if (SerialUSB.available())
-				{
-					input = SerialUSB.read();
-					bool resp = writeIRByte(input);
-					while (!(resp))
+			case 2: // IR output
+				while(true){
+					if (SerialUSB.available()) // check for input
 					{
-						resp = writeIRByte(input);
+						input = SerialUSB.read(); // gets input
+						bool resp = writeIRByte(input); // writes over IR
 					}
+					// refreshes serial
+					SerialUSB.refresh();
 				}
 				break;
 			case 3:
-				while (true)
-				{	bool inp = readIRByte(input);
-					if (inp){
-
-					}
-				}
 				break;
 			default:
 				break;
 		}
 	}
-
+	// refreshes serial
 	SerialUSB.refresh();
 }
